@@ -10,7 +10,7 @@ export function Button({
   children,
   className,
   onClick,
-}: ButtonProps): ReactNode {
+}: ButtonProps): JSX.Element {
   return (
     <button className={className} onClick={onClick}>
       {children}
