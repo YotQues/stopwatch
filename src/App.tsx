@@ -1,6 +1,7 @@
 import React from 'react';
 // import {StartPauseButton} from '@buttons/'
 import { StartPauseButton } from './components/Buttons';
+import PlayPause from './components/HeroIcons/PlayPause';
 import { RunState } from './state/States';
 
 function App(): JSX.Element {
@@ -16,7 +17,8 @@ function App(): JSX.Element {
       <StartPauseButton
         onPauseClick={onPauseClick}
         onRunClick={onRunClick}
-        state={RunState.RUNNING}
+        state={RunState.PAUSED}
+        text={'Hi'}
       />
     </div>
   );

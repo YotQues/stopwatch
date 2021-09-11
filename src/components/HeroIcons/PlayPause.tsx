@@ -25,18 +25,27 @@ export function PlayPause({
   className,
   state,
 }: PlayPauseProps): JSX.Element {
+  const customClassName = `w-12 ${className}`;
   if (solid) {
     return state === RunState.PAUSED ? (
-      <SolidPlay className={className} />
+      <div>
+        <SolidPlay className={customClassName} />
+      </div>
     ) : (
-      <SolidPause className={className} />
+      <div>
+        <SolidPause className={customClassName} />
+      </div>
     );
   }
 
   return state === RunState.PAUSED ? (
-    <SolidPlay className={className} />
+    <div>
+      <OutlinePlay className={customClassName} />
+    </div>
   ) : (
-    <SolidPause className={className} />
+    <div>
+      <OutlinePause className={customClassName} />
+    </div>
   );
 }
 
