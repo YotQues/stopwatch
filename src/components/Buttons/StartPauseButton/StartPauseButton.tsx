@@ -10,10 +10,11 @@ export interface StartPauseButtonProps extends React.ComponentProps<'button'> {
   onPauseClick(): void;
 }
 
-export const StartPauseButton: FunctionComponent<StartPauseButtonProps> = (
-  props
-): JSX.Element => {
-  const { state, onRunClick, onPauseClick } = props;
+export function StartPauseButton({
+  state,
+  onRunClick,
+  onPauseClick,
+}: StartPauseButtonProps): JSX.Element {
   const clickHandler = state === RunState.PAUSED ? onRunClick : onPauseClick;
 
   const bgColorIndicator =
@@ -38,4 +39,4 @@ export const StartPauseButton: FunctionComponent<StartPauseButtonProps> = (
       <PlayPause className={textColorIndicator} state={state} />
     </Button>
   );
-};
+}
