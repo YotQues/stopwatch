@@ -4,7 +4,7 @@ import { RunState } from './state/States';
 
 import { StartPauseButton } from './components/Buttons';
 
-function App(): JSX.Element {
+export const App: React.FunctionComponent = (): JSX.Element => {
   const onRunClick = () => {
     console.log('running');
   };
@@ -21,6 +21,6 @@ function App(): JSX.Element {
       />
     </div>
   );
-}
+};
 
 export default App;
