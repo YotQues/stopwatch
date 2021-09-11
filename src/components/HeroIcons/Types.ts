@@ -2,4 +2,5 @@
 // be rendered solid or outlined
 export interface IconProps {
   solid?: boolean;
+  className: string
 }
