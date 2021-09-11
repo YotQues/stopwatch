@@ -1,10 +1,23 @@
 import React from 'react';
-import { Button } from './components/Buttons/Button';
+// import {StartPauseButton} from '@buttons/'
+import { StartPauseButton } from './components/Buttons';
+import { RunState } from './state/States';
 
 function App(): JSX.Element {
+  const onRunClick = () => {
+    console.log('running');
+  };
+  const onPauseClick = () => {
+    console.log('paused');
+  };
+
   return (
     <div className="p-8">
-      <Button onClick={()=>console.log('clicked')} className="px-4 py-2 leading-4 bg-blue-500 text-white rounded hover:bg-blue-600">Button</Button>
+      <StartPauseButton
+        onPauseClick={onPauseClick}
+        onRunClick={onRunClick}
+        state={RunState.RUNNING}
+      />
     </div>
   );
 }

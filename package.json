@@ -65,5 +65,9 @@
     "autoprefixer": "^9",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "imports": {
+    "#components/*": "./components/*",
+    "#buttons/*": "./components/buttons/*"
   }
 }

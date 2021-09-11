@@ -13,10 +13,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: FunctionComponent<ButtonProps> = (
   props: ButtonProps
 ): JSX.Element => {
-  const { className, onClick } = props;
+  const { children, className, onClick } = props;
   return (
-    <button disabled className={className} onClick={onClick}>
-      {props.children}
+    <button className={className} onClick={onClick}>
+      {children}
     </button>
   );
 };
