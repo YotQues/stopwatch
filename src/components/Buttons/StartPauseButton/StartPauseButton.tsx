@@ -19,11 +19,11 @@ export const StartPauseButton: FunctionComponent<StartPauseButtonProps> = (
   const bgColorIndicator =
     state === RunState.PAUSED
       ? 'bg-green-400 hover:bg-green-500'
-      : 'bg-yellow-400 hover:bg-yellow-300';
+      : 'bg-yellow-300 hover:bg-yellow-400';
   const textColorIndicator =
     state === RunState.PAUSED
       ? 'text-gray-200 group-hover:text-gray-100'
-      : 'text-gray-800 group-hover:text-gray-900';
+      : 'text-gray-900 group-hover:text-gray-800';
 
   const textIndicator = state === RunState.PAUSED ? 'Start' : 'Pause';
   return (
