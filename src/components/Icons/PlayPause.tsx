@@ -23,27 +23,27 @@ export const PlayPause: React.FunctionComponent<PlayPauseProps> = ({
   className,
   state,
 }): JSX.Element => {
-  const customClassName = `w-12 ${className}`;
-  if (solid) {
+  const divWidth = 'w-4/5';
+  const customClassName = `w-full ${className}`;
+
+  function renderSolid() {
     return state === RunState.PAUSED ? (
-      <div>
-        <SolidPlay className={customClassName} />
-      </div>
+      <SolidPlay className={customClassName} />
     ) : (
-      <div>
-        <SolidPause className={customClassName} />
-      </div>
+      <SolidPause className={customClassName} />
     );
   }
 
-  return state === RunState.PAUSED ? (
-    <div>
+  function renderOutline() {
+    return state === RunState.PAUSED ? (
       <OutlinePlay className={customClassName} />
-    </div>
-  ) : (
-    <div>
+    ) : (
       <OutlinePause className={customClassName} />
-    </div>
+    );
+  }
+
+  return (
+    <div className={divWidth}>{solid ? renderSolid() : renderOutline()}</div>
   );
 };
 

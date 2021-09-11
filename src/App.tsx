@@ -18,7 +18,6 @@ function App(): JSX.Element {
         onPauseClick={onPauseClick}
         onRunClick={onRunClick}
         state={RunState.PAUSED}
-        text={'Hi'}
       />
     </div>
   );

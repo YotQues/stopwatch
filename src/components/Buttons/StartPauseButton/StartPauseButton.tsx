@@ -1,21 +1,19 @@
-import React, { FunctionComponent, ReactComponentElement } from 'react';
+import React, { FunctionComponent } from 'react';
 import { RunState } from '../../../state/States';
 
 import { Button } from '../Button';
-// import { Play } from '../../HeroIcons';
 import { PlayPause } from '../../Icons';
 
 export interface StartPauseButtonProps extends React.ComponentProps<'button'> {
   state: RunState;
   onRunClick(): void;
   onPauseClick(): void;
-  text?: string;
 }
 
 export const StartPauseButton: FunctionComponent<StartPauseButtonProps> = (
   props
 ): JSX.Element => {
-  const { text, state, onRunClick, onPauseClick, children } = props;
+  const { state, onRunClick, onPauseClick } = props;
   const clickHandler = state === RunState.PAUSED ? onRunClick : onPauseClick;
 
   const bgColorIndicator =
