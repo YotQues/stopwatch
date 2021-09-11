@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { RunState } from '../../../state/States';
 
 import { Button } from '../Button';
@@ -19,8 +19,8 @@ export function StartPauseButton({
 
   const bgColorIndicator =
     state === RunState.PAUSED
-      ? 'bg-green-400 hover:bg-green-500'
-      : 'bg-yellow-300 hover:bg-yellow-400';
+      ? 'bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75'
+      : 'bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75';
   const textColorIndicator =
     state === RunState.PAUSED
       ? 'text-gray-200 group-hover:text-gray-100'

@@ -1,1 +1,1 @@
-export * from './LapButton';
+export { LapButton } from './LapButton';

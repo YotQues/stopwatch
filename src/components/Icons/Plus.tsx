@@ -1,11 +1,11 @@
 import React from 'react';
-import { PlusIcon as Plus } from '@heroicons/react/outline';
-import { PlusIcon as SolidPlus } from '@heroicons/react/solid';
+import { PlusCircleIcon as Plus } from '@heroicons/react/outline';
+import { PlusCircleIcon as SolidPlus } from '@heroicons/react/solid';
 
 import { IconProps } from './Types';
 
 interface PlusIconProps extends IconProps {
-  isTouched: boolean;
+  isTouched?: boolean;
 }
 
 export const PlusIcon: React.FunctionComponent<PlusIconProps> = (
