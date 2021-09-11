@@ -1,19 +1,22 @@
-import React, { ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  ButtonHTMLAttributes,
+} from 'react';
 
-interface ButtonProps {
-  children: ReactNode | ReactNode[];
-  className: string;
-  onClick: () => void;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: ReactNode;
+  className?: string;
+  onClick?: () => void;
 }
 
-export function Button({
-  children,
-  className,
-  onClick,
-}: ButtonProps): JSX.Element {
+export const Button: FunctionComponent<ButtonProps> = (
+  props: ButtonProps
+): JSX.Element => {
+  const { className, onClick } = props;
   return (
-    <button className={className} onClick={onClick}>
-      {children}
+    <button disabled className={className} onClick={onClick}>
+      {props.children}
     </button>
   );
-}
+};
