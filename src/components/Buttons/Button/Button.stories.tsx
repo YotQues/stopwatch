@@ -6,15 +6,17 @@ import '../../../index.css';
 
 export default {
   component: Button,
-  title: 'Buttons/Button',
+  title: 'Buttons/Generic',
 };
 const Template = (args: ButtonProps) => <Button {...args} />;
 
 export const Default = Template.bind(
   {},
   {
-    className:
-      'px-4 py-2 leading-4 bg-blue-500 text-white rounded hover:bg-blue-600',
-    children: 'Default Button',
+    className: 'bg-blue-500 hover:bg-blue-600',
+    label: {
+      text: 'Generic Button',
+      style: 'text-gray-200 group-hover:text-gray-100',
+    },
   }
 );

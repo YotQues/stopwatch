@@ -2,7 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 
 export interface ButtonProps extends React.ComponentProps<'button'> {
   label?: {
-    text: string;
+    text: ReactNode;
     style: string;
   };
   children?: ReactNode;
