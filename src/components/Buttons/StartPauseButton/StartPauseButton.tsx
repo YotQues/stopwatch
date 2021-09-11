@@ -33,7 +33,7 @@ export const StartPauseButton: FunctionComponent<StartPauseButtonProps> = ({
   const textIndicator = state === RunState.PAUSED ? 'Start' : 'Pause';
   return (
     <Button
-      className={`w-16 h-16 flex justify-center items-center ${colorIndicator}`}
+      className={`w-16 h-16 flex justify-center items-center shadow ${colorIndicator}`}
       onClick={clickHandler}
     >
       {iconIndicator}
