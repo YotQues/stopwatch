@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 
 import {
   PlayIcon as OutlinePlay,
@@ -10,8 +10,6 @@ import {
   PauseIcon as SolidPause,
 } from '@heroicons/react/solid';
 
-import {} from '@heroicons/react/outline';
-
 import { RunState } from '../../state/States';
 
 import { IconProps } from './Types';
@@ -20,11 +18,11 @@ interface PlayPauseProps extends IconProps {
   state: RunState;
 }
 
-export function PlayPause({
+export const PlayPause: React.FunctionComponent<PlayPauseProps> = ({
   solid,
   className,
   state,
-}: PlayPauseProps): JSX.Element {
+}): JSX.Element => {
   const customClassName = `w-12 ${className}`;
   if (solid) {
     return state === RunState.PAUSED ? (
@@ -47,6 +45,6 @@ export function PlayPause({
       <OutlinePause className={customClassName} />
     </div>
   );
-}
+};
 
 export default PlayPause;

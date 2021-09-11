@@ -24,9 +24,10 @@ export interface ButtonProps extends React.ComponentProps<'button'> {
 export const Button: FunctionComponent<ButtonProps> = (props): JSX.Element => {
   const { label, onClick, children, className } = props;
 
+  const dimensions = 'w-20 h-20 md-w-32 md-h-32';
   return (
     <button
-      className={`group w-20 h-20 flex flex-col justify-center items-center shadow ${className} hover:shadow-none`}
+      className={`group ${dimensions} flex flex-col justify-center items-center shadow ${className} hover:shadow-none`}
       onClick={onClick}
     >
       {children && children}

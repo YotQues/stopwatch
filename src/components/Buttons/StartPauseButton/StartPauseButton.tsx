@@ -3,7 +3,7 @@ import { RunState } from '../../../state/States';
 
 import { Button } from '../Button';
 // import { Play } from '../../HeroIcons';
-import { PlayPause } from '../../HeroIcons/PlayPause';
+import { PlayPause } from '../../Icons';
 
 export interface StartPauseButtonProps extends React.ComponentProps<'button'> {
   state: RunState;

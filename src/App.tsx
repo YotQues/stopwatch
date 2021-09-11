@@ -1,8 +1,8 @@
 import React from 'react';
-// import {StartPauseButton} from '@buttons/'
-import { StartPauseButton } from './components/Buttons';
-import PlayPause from './components/HeroIcons/PlayPause';
+
 import { RunState } from './state/States';
+
+import { StartPauseButton } from './components/Buttons';
 
 function App(): JSX.Element {
   const onRunClick = () => {
@@ -13,7 +13,7 @@ function App(): JSX.Element {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 grid grid-cols-4 grid">
       <StartPauseButton
         onPauseClick={onPauseClick}
         onRunClick={onRunClick}
