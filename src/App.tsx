@@ -1,30 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { RunState } from './state/States';
-
-import { LapButton, StartPauseButton } from './components/Buttons';
+import { ButtonStack } from './components/Buttons';
 
 export const App: React.FunctionComponent = (): JSX.Element => {
-  const onStartClick = () => {
-    console.log('running');
-  };
-  const onPauseClick = () => {
-    console.log('paused');
-  };
-  const onLapClick = () => {
-    console.log('lap');
+  const [isRun, setIsRun] = useState(true);
+
+  const eventHandlers = {
+    onStartClick: () => {
+      console.log('running');
+    },
+    onPauseClick: () => {
+      console.log('paused');
+    },
+    onLapClick: () => {
+      console.log('lap');
+    },
+    onResetClick: () => {
+      console.log('Refresh');
+    },
   };
 
   return (
-    <div className="p-8 grid grid-cols-4">
-      <StartPauseButton
-        onPauseClick={onPauseClick}
-        onStartClick={onStartClick}
-        state={RunState.RUNNING}
-      />
-      <LapButton onClick={onLapClick} />
+    <div className="p-8">
+      <ButtonStack state={{ isRun }} {...eventHandlers} />
     </div>
   );
 };
-
-export default App;

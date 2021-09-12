@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Button, ButtonStyles } from '../Button';
+import { Button, ButtonStyles } from './Button';
 
-import { PlusCircleIcon } from '../../Icons/PlusCircle';
+import { PlusCircleIcon } from '../Icons/PlusCircle';
 
 export interface LapButtonProps extends React.ComponentProps<'button'> {
   onClick: () => void;

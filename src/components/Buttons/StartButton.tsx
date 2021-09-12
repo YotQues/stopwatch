@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Button, ButtonStyles } from '../Button';
-import { Play } from '../../Icons';
+import { Button, ButtonStyles } from './Button';
+import { Play } from '../Icons';
 
 interface StartButtonProps extends React.ComponentProps<'button'> {
   onClick: () => void;

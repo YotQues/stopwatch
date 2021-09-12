@@ -37,7 +37,7 @@ export function Button(props: ButtonProps): JSX.Element {
       {children && children}
       {label && (
         <div
-          className={`justify-self-end self-center font-semi-bold ${fontSize} text-${styles.textColor} group-hover:text-${styles.activeTextColor}`}
+          className={`justify-self-end self-center font-semibold ${fontSize} text-${styles.textColor} group-hover:text-${styles.activeTextColor}`}
         >
           {label}
         </div>
