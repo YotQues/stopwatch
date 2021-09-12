@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 export interface ButtonStyles {
   bgColor: string;
@@ -18,14 +18,7 @@ export interface ButtonProps extends React.ComponentProps<'button'> {
     activeTextColor: string;
   };
   onClick?: () => void;
-  // 👇 These are mainly for visual feedbacks
 }
-
-// type Clickable = {
-//   onMouseDown?: () => void;
-//   onMouseUp?: () => void;
-//   onFocus?: () => void;
-// };
 
 // 👇 For styling, a 'group-{event}' is needed to affect the children of the component (label.style as well).
 export function Button(props: ButtonProps): JSX.Element {

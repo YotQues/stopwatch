@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Button, ButtonProps } from './Button';
+import { Button, ButtonProps } from '../components/Buttons/Button/Button';
+
+import { Play, Pause, PlusCircleIcon } from '../components/Icons';
 
 import '../../../index.css';
 
@@ -9,8 +11,17 @@ export default {
   title: 'Buttons/Generic',
   argTypes: {
     label: {
-      text: 'Overwritten text',
-      style: 'TailwindCSS classes',
+      options: ['Start', 'Pause', 'Lap'],
+      control: { type: 'radio' },
+    },
+    children: {
+      options: [],
+    },
+    styles: {
+      bgColor: 'gray-400',
+      activeBgColor: 'gray-500',
+      textColor: 'white',
+      activeTextColor: 'white',
     },
   },
 };
@@ -24,7 +35,3 @@ Default.arguments = {
     style: 'text-gray-200 group-hover:text-gray-100',
   },
 };
-
-/* export const StartRun = Template.bind({},{
-  ...Default.args
-}) */
