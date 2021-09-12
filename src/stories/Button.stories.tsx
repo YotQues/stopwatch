@@ -3,7 +3,13 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { Button, ButtonProps } from '../components/Buttons/Button';
 
-import { Pause, Play, PlusCircleIcon } from '../components/Icons';
+import {
+  Pause,
+  Play,
+  PlusCircleIcon,
+  Refresh,
+  Stop,
+} from '../components/Icons';
 
 // import * as PauseStories from './Icons/Pause.stories';
 
@@ -57,6 +63,7 @@ PauseButton.args = {
   },
   children: <Pause styles={{ color: 'gray-900', activeColor: 'gray-800' }} />,
 };
+
 export const LapButton = Template.bind({});
 LapButton.args = {
   label: 'Lap',
@@ -69,4 +76,27 @@ LapButton.args = {
   children: (
     <PlusCircleIcon styles={{ color: 'gray-200', activeColor: 'white' }} />
   ),
+};
+
+export const ResetButton = Template.bind({});
+ResetButton.args = {
+  label: 'Reset',
+  styles: {
+    bgColor: 'blue-500',
+    activeBgColor: 'blue-600',
+    textColor: 'white',
+    activeTextColor: 'gray-100',
+  },
+  children: <Refresh styles={{ color: 'white', activeColor: 'gray-100' }} />,
+};
+export const StopButton = Template.bind({});
+StopButton.args = {
+  label: 'Stop',
+  styles: {
+    bgColor: 'red-500',
+    activeBgColor: 'red-600',
+    textColor: 'gray-200',
+    activeTextColor: 'gray-100',
+  },
+  children: <Stop styles={{ color: 'gray-100', activeColor: 'gray-100' }} />,
 };

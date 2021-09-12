@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { LapButton, StartButton, PauseButton, ResetButton } from './index';
+import {
+  LapButton,
+  StartButton,
+  PauseButton,
+  ResetButton,
+  StopButton,
+} from './index';
 
 // interface ButtonType {
 //   styles: ButtonStyles;
@@ -18,6 +24,7 @@ interface ButtonStackProps {
   onPauseClick: Handler;
   onLapClick: Handler;
   onResetClick: Handler;
+  onStopClick: Handler;
 }
 
 export function ButtonStack({
@@ -26,9 +33,10 @@ export function ButtonStack({
   onPauseClick,
   onLapClick,
   onResetClick,
+  onStopClick,
 }: ButtonStackProps): JSX.Element {
   const renderRunButton = (): JSX.Element => {
-    return state.isRun ? (
+    return !state.isRun ? (
       <StartButton onClick={onStartClick} />
     ) : (
       <PauseButton onClick={onPauseClick} />
@@ -40,6 +48,7 @@ export function ButtonStack({
       {renderRunButton()}
       <LapButton onClick={onLapClick} />
       <ResetButton onClick={onResetClick} />
+      <StopButton onClick={onStopClick} />
     </div>
   );
 }

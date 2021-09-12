@@ -1,22 +1,22 @@
 import React from 'react';
 
 import { Button, ButtonStyles } from './Button';
-import { Refresh } from '../Icons';
+import { Stop } from '../Icons';
 
-interface ResetButtonProps extends React.ComponentProps<'button'> {
+interface StopButtonProps extends React.ComponentProps<'button'> {
   onClick: () => void;
 }
 
-export function ResetButton({ onClick }: ResetButtonProps): JSX.Element {
+export function StopButton({ onClick }: StopButtonProps): JSX.Element {
   const styles: ButtonStyles = {
-    bgColor: 'blue-500',
-    activeBgColor: 'blue-600',
+    bgColor: 'red-500',
+    activeBgColor: 'red-600',
     textColor: 'gray-200',
     activeTextColor: 'gray-100',
   };
   return (
-    <Button styles={styles} onClick={onClick} label="Reset">
-      <Refresh
+    <Button styles={styles} onClick={onClick} label="Stop">
+      <Stop
         styles={{
           color: styles.textColor,
           activeColor: styles.activeTextColor,

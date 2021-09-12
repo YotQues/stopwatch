@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ButtonStack } from './components/Buttons';
 
 export const App: React.FunctionComponent = (): JSX.Element => {
-  const [isRun, setIsRun] = useState(true);
+  const [isRun, setIsRun] = useState(false);
 
   const eventHandlers = {
     onStartClick: () => {
@@ -17,6 +17,9 @@ export const App: React.FunctionComponent = (): JSX.Element => {
     },
     onResetClick: () => {
       console.log('Refresh');
+    },
+    onStopClick: () => {
+      console.log('Stop');
     },
   };
 
