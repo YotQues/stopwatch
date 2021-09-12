@@ -20,6 +20,7 @@ export function StartButton({ onClick }: StartButtonProps): JSX.Element {
         styles={{
           color: styles.textColor,
           activeColor: styles.activeTextColor,
+          width: '4/5',
         }}
       />
     </Button>

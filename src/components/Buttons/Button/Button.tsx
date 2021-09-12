@@ -31,13 +31,13 @@ export function Button(props: ButtonProps): JSX.Element {
 
   return (
     <button
-      className={`group ${dimensions} flex flex-col justify-center items-center shadow bg-${styles.bgColor} hover:${styles.activeBgColor} ${className} hover:shadow-none focus:ring-2 focus:ring-${styles.activeBgColor} focus:ring-opacity-75`}
+      className={`group ${dimensions} flex flex-col justify-center items-center shadow bg-${styles.bgColor} hover:bg-${styles.activeBgColor} ${className} hover:shadow-none focus:ring-2 focus:ring-${styles.activeBgColor} focus:ring-opacity-75`}
       onClick={onClick}
     >
       {children && children}
       {label && (
         <div
-          className={`justify-self-end self-center font-medium ${fontSize} text-${styles.textColor} group-hover:text-${styles.activeTextColor}`}
+          className={`justify-self-end self-center font-semi-bold ${fontSize} text-${styles.textColor} group-hover:text-${styles.activeTextColor}`}
         >
           {label}
         </div>

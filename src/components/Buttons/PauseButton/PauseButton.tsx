@@ -20,6 +20,7 @@ export function PauseButton({ onClick }: PauseButtonProps): JSX.Element {
         styles={{
           color: styles.textColor,
           activeColor: styles.activeTextColor,
+          width: '4/5',
         }}
       />
     </Button>
