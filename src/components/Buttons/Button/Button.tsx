@@ -1,34 +1,35 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 
-export interface ButtonProps extends React.ComponentProps<'button'> {
-  // 👇 An alternative to 'children' || used for the text node beneath the icons in descendant components.
-  label?: {
-    text: ReactNode; // 👈 the node in the div below
-    style: string; // 👈 the custom className addition
-  };
-  children?: ReactNode;
-  className?: string;
-  onClick?: () => void;
-  // 👇 These are mainly for visual feedbacks
-  onMouseDown?: () => void;
-  onMouseUp?: () => void;
-  onFocus?: () => void;
+export interface ButtonStyles {
+  bgColor: string;
+  activeBgColor: string;
+  textColor: string;
+  activeTextColor: string;
 }
 
-type ClickAble = {
-  onMouseDown?: () => void;
-  onMouseUp?: () => void;
-  onFocus?: () => void;
-};
+export interface ButtonProps extends React.ComponentProps<'button'> {
+  // 👇 An alternative to 'children' || used for the text node beneath the icons in descendant components.
+  label?: ReactNode; // 👈 the node inserted in the div below
+  children?: ReactNode;
+  styles: {
+    bgColor: string;
+    activeBgColor: string;
+    textColor: string;
+    activeTextColor: string;
+  };
+  onClick?: () => void;
+  // 👇 These are mainly for visual feedbacks
+}
+
+// type Clickable = {
+//   onMouseDown?: () => void;
+//   onMouseUp?: () => void;
+//   onFocus?: () => void;
+// };
 
 // 👇 For styling, a 'group-{event}' is needed to affect the children of the component (label.style as well).
-export const Button: FunctionComponent<ButtonProps> = (props): JSX.Element => {
-  const { label, onClick, children, className } = props;
-
-  const ClickAbleHandler: ClickAble = {};
-  if (props.onMouseDown) ClickAbleHandler.onMouseDown = props.onMouseDown;
-  if (props.onMouseUp) ClickAbleHandler.onMouseUp = props.onMouseUp;
-  if (props.onFocus) ClickAbleHandler.onFocus = props.onFocus;
+export function Button(props: ButtonProps): JSX.Element {
+  const { label, onClick, children, className, styles } = props;
 
   const dimensions =
     'w-20 h-20 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48';
@@ -37,18 +38,17 @@ export const Button: FunctionComponent<ButtonProps> = (props): JSX.Element => {
 
   return (
     <button
-      className={`group ${dimensions} flex flex-col justify-center items-center shadow ${className} hover:shadow-none`}
+      className={`group ${dimensions} flex flex-col justify-center items-center shadow bg-${styles.bgColor} hover:${styles.activeBgColor} ${className} hover:shadow-none focus:ring-2 focus:ring-${styles.activeBgColor} focus:ring-opacity-75`}
       onClick={onClick}
-      {...ClickAbleHandler}
     >
       {children && children}
       {label && (
         <div
-          className={`justify-self-end self-center font-medium ${fontSize} ${label.style}`}
+          className={`justify-self-end self-center font-medium ${fontSize} text-${styles.textColor} group-hover:text-${styles.activeTextColor}`}
         >
-          {label.text}
+          {label}
         </div>
       )}
     </button>
   );
-};
+}

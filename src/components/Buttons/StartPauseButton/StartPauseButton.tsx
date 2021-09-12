@@ -1,7 +1,7 @@
 import React from 'react';
 import { RunState } from '../../../state/States';
 
-import { Button } from '../Button';
+import { Button, ButtonStyles } from '../Button';
 import { PlayPause } from '../../Icons';
 
 export interface StartPauseButtonProps extends React.ComponentProps<'button'> {
@@ -17,10 +17,20 @@ export function StartPauseButton({
 }: StartPauseButtonProps): JSX.Element {
   const clickHandler = state === RunState.PAUSED ? onRunClick : onPauseClick;
 
-  const bgColorIndicator =
-    state === RunState.PAUSED
-      ? 'bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75'
-      : 'bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75';
+  const styles: ButtonStyles = RunState.PAUSED
+    ? {
+        bgColor: 'green-400',
+        activeBgColor: 'green-500',
+        textColor: 'gray-200',
+        activeTextColor: 'gray-100',
+      }
+    : {
+        bgColor: 'yellow-300',
+        activeBgColor: 'yellow-400',
+        textColor: 'gray-900',
+        activeTextColor: 'gray-800',
+      };
+
   const textColorIndicator =
     state === RunState.PAUSED
       ? 'text-gray-200 group-hover:text-gray-100'
@@ -28,14 +38,7 @@ export function StartPauseButton({
 
   const textIndicator = state === RunState.PAUSED ? 'Start' : 'Pause';
   return (
-    <Button
-      className={bgColorIndicator}
-      onClick={clickHandler}
-      label={{
-        text: textIndicator,
-        style: textColorIndicator,
-      }}
-    >
+    <Button styles={styles} onClick={clickHandler} label={textIndicator}>
       <PlayPause className={textColorIndicator} state={state} />
     </Button>
   );

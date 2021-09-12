@@ -5,5 +5,9 @@ import React from 'react';
 // be rendered solid or outlined
 export interface IconProps extends React.ComponentProps<'svg'> {
   solid?: boolean;
-  className: string;
+  styles: {
+    color: string;
+    activeColor: string;
+    width?: string;
+  };
 }
