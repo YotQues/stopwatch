@@ -1,2 +1,5 @@
-export * from './PlayPause';
-export * from './Plus';
+export * from './Refresh';
+export * from './Pause';
+export * from './Play';
+export * from './Stop';
+export * from './PlusCircle';
