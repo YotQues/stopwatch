@@ -11,15 +11,9 @@ export function Pause({ solid, styles }: IconProps): JSX.Element {
     styles.color
   } group-hover:text-${styles.activeColor}`;
 
-  return (
-    <>
-      {solid ? (
-        <SolidPause className={customClassName} />
-      ) : (
-        <OutlinePause className={customClassName} />
-      )}
-    </>
+  return solid ? (
+    <SolidPause className={customClassName} />
+  ) : (
+    <OutlinePause className={customClassName} />
   );
 }
-
-export default Pause;

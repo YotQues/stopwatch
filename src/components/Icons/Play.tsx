@@ -11,15 +11,9 @@ export function Play({ solid, styles }: IconProps): JSX.Element {
     styles.color
   } group-hover:text-${styles.activeColor}`;
 
-  return (
-    <>
-      {solid ? (
-        <SolidPlay className={customClassName} />
-      ) : (
-        <OutlinePlay className={customClassName} />
-      )}
-    </>
+  return solid ? (
+    <SolidPlay className={customClassName} />
+  ) : (
+    <OutlinePlay className={customClassName} />
   );
 }
-
-export default Play;

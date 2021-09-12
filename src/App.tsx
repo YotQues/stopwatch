@@ -5,7 +5,7 @@ import { RunState } from './state/States';
 import { LapButton, StartPauseButton } from './components/Buttons';
 
 export const App: React.FunctionComponent = (): JSX.Element => {
-  const onRunClick = () => {
+  const onStartClick = () => {
     console.log('running');
   };
   const onPauseClick = () => {
@@ -19,7 +19,7 @@ export const App: React.FunctionComponent = (): JSX.Element => {
     <div className="p-8 grid grid-cols-4">
       <StartPauseButton
         onPauseClick={onPauseClick}
-        onRunClick={onRunClick}
+        onStartClick={onStartClick}
         state={RunState.RUNNING}
       />
       <LapButton onClick={onLapClick} />
