@@ -1,64 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { setIntervalId, setElapsedTime } from '../../state/actions';
-
-import { StopwatchState } from '../../state/reducers/watchReducer';
+import { WatchActions } from '../../state/actions';
+import { State, IntervalId } from '../../state/reducers/watchReducer';
 
 import * as TimerUtils from '../../utils/timerUtils';
 
-interface PlainStopwatchProps {
-  isRun: boolean;
-  elapsedTime: number;
-  intervalId: number | undefined;
-  setIntervalId: (intervalId: number | undefined) => void;
-  setElapsedTime: (time: number) => void;
-}
+import { Timer } from './Timer';
+import { ButtonStack } from '../Buttons';
 
-export function PlainStopwatch({
-  isRun,
-  intervalId,
-  setIntervalId,
-  setElapsedTime,
-  elapsedTime,
-}: PlainStopwatchProps): JSX.Element {
-  useEffect(() => {
-    if (isRun) startRun();
-    if (isRun && elapsedTime === 0) pauseRun();
-  }, [isRun]);
+export function Stopwatch(): JSX.Element {
+  const state = {
+    elapsedTime: useSelector((state: State) => state.stopwatch.elapsedTime),
+    isRun: useSelector((state: State) => state.stopwatch.isRun),
+    intervalId: useSelector((state: State) => state.stopwatch.intervalId),
+  };
 
-  let formattedTime = TimerUtils.FormatTime(elapsedTime);
+  const dispatch = useDispatch();
+
+  const dispatchStart = (intervalId: IntervalId): void => {
+    dispatch({
+      type: WatchActions.START,
+      payload: { intervalId },
+    });
+  };
+  const setElapsedTime = (elapsedTime: number): void => {
+    dispatch({
+      type: WatchActions.SET_TIME,
+      payload: { elapsedTime },
+    });
+  };
+
+  const eventHandlers = {
+    onStartClick: () => startRun(),
+    onPauseClick: () => {
+      pauseRun();
+    },
+    onLapClick: () => {
+      console.log('lap');
+    },
+    onResetClick: () => {
+      // setElapsedTime(0);
+    },
+    onStopClick: () => {},
+  };
 
   const startRun = () => {
-    TimerUtils.onStart(elapsedTime, intervalId, setIntervalId, setElapsedTime);
+    TimerUtils.onStart(
+      state.elapsedTime,
+      state.intervalId,
+      dispatchStart,
+      setElapsedTime
+    );
   };
+
   const pauseRun = () => {
-    clearInterval(intervalId);
+    clearInterval(state.intervalId);
+    dispatch({
+      type: WatchActions.PAUSE,
+    });
+  };
+
+  const restartRun = () => {
+    clearInterval(state.intervalId);
+    dispatch({ type: WatchActions.SET_TIME, payload: 0 });
   };
 
   return (
-    <div className="flex ">
-      <h2 className="text-2xl cols-span-1">{formattedTime.hours}</h2>
-      <h3 className="text-2xl cols-span-1">:{formattedTime.minutes}</h3>
-      <h3 className="text-2xl cols-span-1">:{formattedTime.seconds}</h3>
-      <h3 className="text-2xl cols-span-1">.{formattedTime.centSeconds}</h3>
+    <div>
+      <Timer time={state.elapsedTime} />
+      <ButtonStack state={state.intervalId} {...eventHandlers} />
     </div>
   );
 }
-
-const mapStateToProps = ({
-  isRun,
-  elapsedTime,
-  intervalId,
-}: StopwatchState) => {
-  return {
-    isRun,
-    elapsedTime,
-    intervalId,
-  };
-};
-
-export const Stopwatch = connect(mapStateToProps, {
-  setIntervalId,
-  setElapsedTime,
-})(PlainStopwatch);

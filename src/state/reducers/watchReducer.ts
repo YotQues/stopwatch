@@ -1,9 +1,16 @@
+import { AnyAction } from 'redux';
 import { WatchAction, WatchActions } from '../actions';
+
+export type IntervalId = number | undefined;
 
 export interface StopwatchState {
   isRun: boolean;
   elapsedTime: number;
   intervalId: number | undefined;
+}
+
+export interface State {
+  stopwatch: StopwatchState;
 }
 
 export type WatchDispatchType = (args: WatchAction<any>) => WatchAction<any>;
@@ -14,23 +21,28 @@ const initialState = {
   intervalId: undefined,
 };
 
-const reducer = (
+export const reducer = (
   state: StopwatchState = initialState,
-  action: WatchAction<any>
+  action: AnyAction
 ): StopwatchState => {
+  const { SET_TIME, PAUSE, START, STOP } = WatchActions;
+
   switch (action.type) {
-    case WatchActions.SET_TIME:
-      return { ...state, elapsedTime: action.payload };
-
-    case WatchActions.SET_RUN:
-      return { ...state, isRun: action.payload };
-
-    case WatchActions.SET_INTERVAL_ID:
-      return { ...state, intervalId: action.payload };
-
+    case START:
+      return { ...state, intervalId: action.payload.intervalId };
+    case SET_TIME:
+      return { ...state, elapsedTime: action.payload.elapsedTime };
+    case PAUSE:
+      return { ...state, intervalId: undefined };
+    case STOP:
+      return state.intervalId
+        ? {
+            ...state,
+            elapsedTime: 0,
+            intervalId: undefined,
+          }
+        : { ...state, elapsedTime: 0 };
     default:
       return state;
   }
 };
-
-export { reducer as watchReducer };

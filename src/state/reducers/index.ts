@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { watchReducer } from './watchReducer';
+import { reducer as watchReducer } from './watchReducer';
 
 export const reducer = combineReducers({
   stopwatch: watchReducer,

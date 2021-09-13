@@ -20,17 +20,20 @@ export function onStart(
   timeSetter: TimeSetter
 ): void {
   clearInterval(intervalState);
+
   const startTime = Date.now();
   let elapsedTime: number;
 
   let intervalId: number = window.setInterval(() => {
-    if (timeState === 0) {
-      elapsedTime = Date.now() - startTime;
+    if (timeState !== 0) {
+      elapsedTime = timeState + Date.now() - startTime;
     } else {
-      elapsedTime += Date.now() - startTime;
+      elapsedTime = Date.now() - startTime;
     }
+
     timeSetter(elapsedTime);
   }, 10);
+
   intervalSetter(intervalId);
 }
 
@@ -46,34 +49,25 @@ export function onPause(
 export function onStop(
   intervalState: number,
   isRunState: boolean,
-  // intervalSetter: IntervalSetter,
-  // timeSetter: TimeSetter
   stopRun: () => void
 ): void {
   if (intervalState || isRunState) {
     clearInterval(intervalState);
-    // intervalSetter(undefined);
   }
-  // timeSetter(0);
   stopRun();
 }
 
-export function FormatTime(elapsedTimeState: number): FormattedTime {
+export function formatTime(elapsedTimeState: number): FormattedTime {
   let centSeconds: string | number;
-
-  if (elapsedTimeState % 1000 !== 0) {
-    centSeconds = formatNumber((elapsedTimeState % 1000) / 10);
-  } else centSeconds = '00';
+  centSeconds = formatNumber((elapsedTimeState % 1000) / 10);
 
   let tempSeconds = (elapsedTimeState % 600000) / 1000;
-
   if (tempSeconds >= 60) {
     tempSeconds = tempSeconds % 60;
   }
   let seconds = formatNumber(tempSeconds);
 
   let tempMinutes = (elapsedTimeState % 3600000) / 60000;
-
   if (elapsedTimeState % 60000 === 0) {
     tempMinutes = tempMinutes % 60;
   }

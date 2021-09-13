@@ -1,7 +1,13 @@
+export type WatchAction<T> = {
+  type: WatchActions;
+  payload: T;
+};
+
 export enum WatchActions {
-  SET_RUN = 'SET_RUN',
   SET_TIME = 'SET_TIME',
-  SET_INTERVAL_ID = 'SET_INTERVAL_ID',
+  START = 'START',
+  STOP = 'STOP',
+  PAUSE = 'PAUSE',
 }
 
 export enum LapActions {
