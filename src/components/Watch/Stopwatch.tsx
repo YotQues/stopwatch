@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { connect, MapStateToProps } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import { setIntervalId, setElapsedTime } from '../../state/actions';
 
@@ -7,7 +7,7 @@ import { StopwatchState } from '../../state/reducers/watchReducer';
 
 import * as TimerUtils from '../../utils/timerUtils';
 
-interface PlainStopwatchProps extends StopwatchState {
+interface PlainStopwatchProps {
   isRun: boolean;
   elapsedTime: number;
   intervalId: number | undefined;
@@ -15,32 +15,33 @@ interface PlainStopwatchProps extends StopwatchState {
   setElapsedTime: (time: number) => void;
 }
 
-function PlainStopwatch({
+export function PlainStopwatch({
   isRun,
-  elapsedTime,
   intervalId,
-  setElapsedTime,
   setIntervalId,
+  setElapsedTime,
+  elapsedTime,
 }: PlainStopwatchProps): JSX.Element {
-  console.log(elapsedTime);
-
   useEffect(() => {
     if (isRun) startRun();
-    console.log(isRun);
+    if (isRun && elapsedTime === 0) pauseRun();
   }, [isRun]);
 
   let formattedTime = TimerUtils.FormatTime(elapsedTime);
 
   const startRun = () => {
-    TimerUtils.onStart(elapsedTime, setIntervalId, setElapsedTime);
+    TimerUtils.onStart(elapsedTime, intervalId, setIntervalId, setElapsedTime);
+  };
+  const pauseRun = () => {
+    clearInterval(intervalId);
   };
 
   return (
-    <div className="grid grid-cols-4 grid-col ">
-      <h3 className="cols-span-1">{formattedTime.hours}</h3>
-      <h3 className="cols-span-1">: {formattedTime.minutes}</h3>
-      <h3 className="cols-span-1">: {formattedTime.seconds}</h3>
-      <h3 className="cols-span-1">: {formattedTime.centSeconds}</h3>
+    <div className="flex ">
+      <h2 className="text-2xl cols-span-1">{formattedTime.hours}</h2>
+      <h3 className="text-2xl cols-span-1">:{formattedTime.minutes}</h3>
+      <h3 className="text-2xl cols-span-1">:{formattedTime.seconds}</h3>
+      <h3 className="text-2xl cols-span-1">.{formattedTime.centSeconds}</h3>
     </div>
   );
 }

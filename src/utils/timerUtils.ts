@@ -15,9 +15,11 @@ type FormattedTime = {
 
 export function onStart(
   timeState: number,
+  intervalState: number | undefined,
   intervalSetter: IntervalSetter,
   timeSetter: TimeSetter
 ): void {
+  clearInterval(intervalState);
   const startTime = Date.now();
   let elapsedTime: number;
 
@@ -33,12 +35,12 @@ export function onStart(
 }
 
 export function onPause(
-  intervalState: number,
+  intervalState: number | undefined
   // intervalSetter: IntervalSetter
-  pauseRun: () => void
+  // pauseRun: () => void
 ): void {
   window.clearInterval(intervalState);
-  pauseRun();
+  // pauseRun();
 }
 
 export function onStop(
