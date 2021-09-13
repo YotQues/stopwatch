@@ -24,21 +24,32 @@ export function Timer({ time = Date.now() }: TimerProps): JSX.Element {
     makeTimeForm(time);
   }, [time]);
 
+  const boxDimensions = 'w-80 h-80 lg:w-128 lg:h-128';
+  const cellWidth = 'w-20 lg:w-36 xl:w-48';
+  const cellHeight = 'h-20 lg:h-36 xl:h-48';
+
+  const fontSize = 'text-6xl md:text-8xl lg:text-9xl xl:text-2xl';
+
+  const boxClassName = `${boxDimensions} ${fontSize} flex justify-around items-center text-center text-gray-200 rounded-full`;
+
   return (
-    <div className="flex">
-      <h3 className="text-8xl">{hrs}</h3>
-      <h3 className="text-8xl">:{min}</h3>
-      <h3 className="text-8xl">:{sec}</h3>
-      <h3 className="text-8xl">.{centSec}</h3>
+    <div className={boxClassName + ' border-2 border-gray-200 shadow-lg'}>
+      <div className={` ${cellWidth} ${cellHeight} `}>{hrs}</div>
+      <div className={`w-2 ${cellHeight}`}>:</div>
+      <div className={`${cellWidth} ${cellHeight} `}>{min}</div>
+      <div className={`w-2 ${cellHeight}`}>:</div>
+      <div className={`${cellWidth} ${cellHeight} `}>{sec}</div>
+      <div className={`w-2 ${cellHeight}`}>:</div>
+      <div className={`${cellWidth} ${cellHeight} `}>{centSec}</div>
     </div>
   );
 }
+
 {
-  /* <span className="time">{hrs < 10 ? `0${hrs}` : hrs}</span>
-      <span className="unit">:</span>
-      <span className="time right">{min < 10 ? `0${min}` : min}</span>
-      <span className="unit">:</span>
-      <span className="time right">
-        {sec < 10 ? `0${sec}` : sec}.{centSec < 10 ? `0${centSec}` : centSec}
-      </span> */
+  /* <div
+  className={`w-1 h-1/2  relative -inset-x-1/2 -inset-y-1/4 origin-bottom transform rotate-${degrees} transition-transform ease-linear`}
+>
+  <div className="w-full h-1/2 bg-black"></div>
+  <div className="w-full h-1/2"></div>
+</div> */
 }

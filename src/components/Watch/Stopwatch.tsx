@@ -70,11 +70,14 @@ export function Stopwatch(): JSX.Element {
 
   const resetRun = () => {
     TimerUtils.onReset(state.intervalId, dispatchStart, setElapsedTime);
-
   };
 
+  const width = 'w-96 lg:w-128';
+
   return (
-    <div>
+    <div
+      className={`ml-2 p-2 ${width} flex flex-col items-center bg-gradient-to-b from-indigo-600 to-indigo-300 rounded-md transition-shadow shadow-md hover:shadow-xl`}
+    >
       <Timer time={state.elapsedTime} />
       <ButtonStack state={state.intervalId} {...eventHandlers} />
     </div>

@@ -36,7 +36,7 @@ export function ButtonStack({
   };
 
   return (
-    <div className="flex gap-x-2 md:gap-x-3.5 lg:gap-x-5">
+    <div className="flex justify-center gap-x-2 md:gap-x-3.5 lg:gap-x-5 self-center transform -translate-y-1">
       {renderRunButton()}
       <LapButton onClick={onLapClick} />
       <ResetButton onClick={onResetClick} />
