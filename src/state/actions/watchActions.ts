@@ -1,20 +1,18 @@
-import { Action, ActionCreator } from 'redux';
+import { ActionCreator } from 'redux';
 
 import { WatchActions } from './actions';
 
-export interface StopwatchState {
-  isRun: boolean;
-  elapsedTime: number;
-  intervalId: number | undefined;
-}
-
-type WatchAction = {
+export type WatchAction = {
   type: WatchActions;
+  intervalId?: number;
 };
 
-export const StartRun: ActionCreator<WatchAction> = (): WatchAction => {
+export const StartRun: ActionCreator<WatchAction> = (
+  intervalId: number
+): WatchAction => {
   return {
     type: WatchActions.START_RUN,
+    intervalId,
   };
 };
 export const PauseRun = (): WatchAction => {
