@@ -3,58 +3,62 @@ import { connect } from 'react-redux';
 
 import { reducer } from './state/reducers';
 
-import { StartRun, PauseRun, RestartRun, StopRun } from './state/actions';
-
 import { ButtonStack } from './components/Buttons';
 import { Stopwatch } from './components/Watch';
-import { WatchActions } from './state/actions';
 import { StopwatchState } from './state/reducers/watchReducer';
+import {
+  setElapsedTime,
+  setIsRun,
+  setIntervalId,
+  WatchActions,
+} from './state/actions';
 
-interface PlainAppProps extends StopwatchState {
-  StartRun: (intervalId: number) => void;
-  PauseRun: () => void;
-  RestartRun: () => void;
-  StopRun: () => void;
+interface PlainAppProps {
+  isRun: boolean;
+  setIsRun: (isRun: boolean) => void;
+  setElapsedTime: (time: number) => void;
 }
 
-export function PlainApp({
+function PlainApp({
   isRun,
-  elapsedTime,
-  intervalId,
-  PauseRun,
-  RestartRun,
-  StartRun,
-  StopRun,
+  setIsRun,
+  setElapsedTime,
 }: PlainAppProps): JSX.Element {
-  let stopwatch: Stopwatch;
-  stopwatch = new Stopwatch(
-    { isRun, elapsedTime, intervalId },
-    { PauseRun, RestartRun, StartRun, StopRun }
-  );
   useEffect(() => {}, []);
 
   const eventHandlers = {
     onStartClick: () => {
-      console.log('running');
+      setIsRun(true);
     },
     onPauseClick: () => {
-      console.log('paused');
+      setIsRun(false);
     },
     onLapClick: () => {
       console.log('lap');
     },
-    onResetClick: () => {
-      console.log('Refresh');
-    },
+    onResetClick: () => {},
     onStopClick: () => {
-      console.log('Stop');
+      setIsRun(false);
+      setElapsedTime(0);
     },
   };
 
   return (
     <div className="p-8">
       <ButtonStack state={{ isRun }} {...eventHandlers} />
+      <Stopwatch />
     </div>
   );
 }
 
+const mapStateToProps = ({ isRun }: StopwatchState) => {
+  return {
+    isRun,
+  };
+};
+
+export const App = connect(mapStateToProps, {
+  // setIntervalId,
+  setIsRun,
+  setElapsedTime,
+})(PlainApp);

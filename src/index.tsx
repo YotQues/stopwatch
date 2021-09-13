@@ -18,9 +18,12 @@ import { WatchAction } from './state/actions';
 // 👇 A fix for fast refresh issue
 if (module.hot) module.hot.accept();
 
-const store: Store<StopwatchState, WatchAction> & {
-  dispatch: WatchDispatchType;
-} = createStore(reducer);
+const store: Store<
+  StopwatchState,
+  WatchAction<any> & {
+    dispatch: WatchDispatchType;
+  }
+> = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,8 +1,7 @@
 export enum WatchActions {
-  START_RUN = 'START_RUN',
-  PAUSE_RUN = 'PAUSE_RUN',
-  STOP_RUN = 'STOP_RUN',
-  RESET_RUN = 'RESET_RUN',
+  SET_RUN = 'SET_RUN',
+  SET_TIME = 'SET_TIME',
+  SET_INTERVAL_ID = 'SET_INTERVAL_ID',
 }
 
 export enum LapActions {

@@ -1,33 +1,35 @@
 import { ActionCreator } from 'redux';
 
-import { WatchActions } from './actions';
+import { WatchActions } from './actionTypes';
 
-export type WatchAction = {
+export type WatchAction<T> = {
   type: WatchActions;
-  intervalId?: number;
+  payload: T;
 };
 
-export const StartRun: ActionCreator<WatchAction> = (
+export const setIsRun: ActionCreator<WatchAction<boolean>> = (
+  isRun: boolean
+) => {
+  return {
+    type: WatchActions.SET_RUN,
+    payload: isRun,
+  };
+};
+
+export const setIntervalId: ActionCreator<WatchAction<number | undefined>> = (
   intervalId: number
-): WatchAction => {
+) => {
   return {
-    type: WatchActions.START_RUN,
-    intervalId,
-  };
-};
-export const PauseRun = (): WatchAction => {
-  return {
-    type: WatchActions.PAUSE_RUN,
+    type: WatchActions.SET_INTERVAL_ID,
+    payload: intervalId,
   };
 };
 
-export const StopRun = (): WatchAction => {
+export const setElapsedTime: ActionCreator<WatchAction<number>> = (
+  time: number
+) => {
   return {
-    type: WatchActions.STOP_RUN,
-  };
-};
-export const RestartRun = (): WatchAction => {
-  return {
-    type: WatchActions.STOP_RUN,
+    type: WatchActions.SET_TIME,
+    payload: time,
   };
 };

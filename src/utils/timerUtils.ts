@@ -1,12 +1,10 @@
 import { formatNumber } from './numbersToStrings';
 
-type Setter<R, T, K> = (arg1?: T, arg2?: K) => R;
+type Setter<T, R> = (arg?: T) => R;
 
-type IntervalSetter = Setter<void, number | undefined, void>;
+type IntervalSetter = Setter<number | undefined, void>;
 
-type IsRunSetter = Setter<void, boolean, void>;
-
-type TimeSetter = Setter<void, number, void>;
+type TimeSetter = (arg: number) => void;
 
 type FormattedTime = {
   centSeconds: string;
@@ -36,29 +34,26 @@ export function onStart(
 
 export function onPause(
   intervalState: number,
-  isRunSetter: IsRunSetter,
-  intervalSetter: IntervalSetter
+  // intervalSetter: IntervalSetter
+  pauseRun: () => void
 ): void {
   window.clearInterval(intervalState);
-  isRunSetter(false);
-  intervalSetter(undefined);
+  pauseRun();
 }
 
 export function onStop(
   intervalState: number,
   isRunState: boolean,
-  intervalSetter: IntervalSetter,
-  timeSetter: TimeSetter
+  // intervalSetter: IntervalSetter,
+  // timeSetter: TimeSetter
+  stopRun: () => void
 ): void {
   if (intervalState || isRunState) {
     clearInterval(intervalState);
-    intervalSetter(undefined);
+    // intervalSetter(undefined);
   }
-  timeSetter(0);
-}
-
-export function onRestart(timeSetter: TimeSetter): void {
-  timeSetter(0);
+  // timeSetter(0);
+  stopRun();
 }
 
 export function FormatTime(elapsedTimeState: number): FormattedTime {

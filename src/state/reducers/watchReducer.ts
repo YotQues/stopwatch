@@ -6,7 +6,7 @@ export interface StopwatchState {
   intervalId: number | undefined;
 }
 
-export type WatchDispatchType = (args: WatchAction) => WatchAction;
+export type WatchDispatchType = (args: WatchAction<any>) => WatchAction<any>;
 
 const initialState = {
   isRun: false,
@@ -16,20 +16,17 @@ const initialState = {
 
 const reducer = (
   state: StopwatchState = initialState,
-  action: WatchAction
+  action: WatchAction<any>
 ): StopwatchState => {
   switch (action.type) {
-    case WatchActions.START_RUN:
-      return { ...state, isRun: true, intervalId: action.intervalId };
+    case WatchActions.SET_TIME:
+      return { ...state, elapsedTime: action.payload };
 
-    case WatchActions.PAUSE_RUN:
-      return { ...state, isRun: false, intervalId: undefined };
+    case WatchActions.SET_RUN:
+      return { ...state, isRun: action.payload };
 
-    case WatchActions.RESET_RUN:
-      return { ...state, elapsedTime: 0 };
-
-    case WatchActions.STOP_RUN:
-      return { ...state, elapsedTime: 0, intervalId: undefined, isRun: false };
+    case WatchActions.SET_INTERVAL_ID:
+      return { ...state, intervalId: action.payload };
 
     default:
       return state;
