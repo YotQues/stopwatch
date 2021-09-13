@@ -1,3 +1,4 @@
+import { IntervalId } from '../state/reducers/watchReducer';
 import { formatNumber } from './numbersToStrings';
 
 type Setter<T, R> = (arg?: T) => R;
@@ -15,7 +16,7 @@ type FormattedTime = {
 
 export function onStart(
   timeState: number,
-  intervalState: number | undefined,
+  intervalState: IntervalId,
   intervalSetter: IntervalSetter,
   timeSetter: TimeSetter
 ): void {
@@ -35,6 +36,14 @@ export function onStart(
   }, 10);
 
   intervalSetter(intervalId);
+}
+
+export function onReset(
+  intervalState: IntervalId,
+  intervalSetter: IntervalSetter,
+  timeSetter: TimeSetter
+) {
+  onStart(0, intervalState, intervalSetter, timeSetter);
 }
 
 export function onPause(

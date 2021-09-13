@@ -6,6 +6,7 @@ export type WatchAction<T> = {
 export enum WatchActions {
   SET_TIME = 'SET_TIME',
   START = 'START',
+  RESET = 'RESET',
   STOP = 'STOP',
   PAUSE = 'PAUSE',
 }

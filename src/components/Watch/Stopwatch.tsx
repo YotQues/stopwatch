@@ -39,9 +39,11 @@ export function Stopwatch(): JSX.Element {
       console.log('lap');
     },
     onResetClick: () => {
-      // setElapsedTime(0);
+      resetRun();
     },
-    onStopClick: () => {},
+    onStopClick: () => {
+      stopRun();
+    },
   };
 
   const startRun = () => {
@@ -59,10 +61,16 @@ export function Stopwatch(): JSX.Element {
       type: WatchActions.PAUSE,
     });
   };
-
-  const restartRun = () => {
+  const stopRun = () => {
     clearInterval(state.intervalId);
-    dispatch({ type: WatchActions.SET_TIME, payload: 0 });
+    dispatch({
+      type: WatchActions.STOP,
+    });
+  };
+
+  const resetRun = () => {
+    TimerUtils.onReset(state.intervalId, dispatchStart, setElapsedTime);
+
   };
 
   return (

@@ -25,13 +25,11 @@ export const reducer = (
   state: StopwatchState = initialState,
   action: AnyAction
 ): StopwatchState => {
-  const { SET_TIME, PAUSE, START, STOP } = WatchActions;
+  const { SET_TIME, PAUSE, START, STOP, RESET } = WatchActions;
 
   switch (action.type) {
     case START:
       return { ...state, intervalId: action.payload.intervalId };
-    case SET_TIME:
-      return { ...state, elapsedTime: action.payload.elapsedTime };
     case PAUSE:
       return { ...state, intervalId: undefined };
     case STOP:
@@ -42,6 +40,10 @@ export const reducer = (
             intervalId: undefined,
           }
         : { ...state, elapsedTime: 0 };
+    case RESET:
+      return { ...state, elapsedTime: 0 };
+    case SET_TIME:
+      return { ...state, elapsedTime: action.payload.elapsedTime };
     default:
       return state;
   }

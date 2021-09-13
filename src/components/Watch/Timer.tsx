@@ -11,7 +11,7 @@ export function Timer({ time = Date.now() }: TimerProps): JSX.Element {
   const [min, setMin] = useState<string>('00');
   const [sec, setSec] = useState<string>('00');
   const [centSec, setCentSec] = useState<string>('00');
-  
+
   const makeTimeForm = (time: number): void => {
     const { centSeconds, seconds, minutes, hours } = formatTime(time);
     setCentSec(centSeconds);
@@ -20,7 +20,7 @@ export function Timer({ time = Date.now() }: TimerProps): JSX.Element {
     setHrs(hours);
   };
 
-  useEffect((): void => {
+  useEffect(() => {
     makeTimeForm(time);
   }, [time]);
 
