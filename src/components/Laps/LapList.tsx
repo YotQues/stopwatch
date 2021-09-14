@@ -8,7 +8,7 @@ import { SingleLapState } from '../../state/reducers/lapsReducer';
 import { toClassString } from '../../utils/toClassString';
 
 import { SingleLap } from './SingleLap';
-import { Trash } from '../Icons';
+import { Refresh, Trash } from '../Icons';
 import { State } from '../../state/reducers';
 
 export function LapList() {
@@ -20,6 +20,7 @@ export function LapList() {
 
   const wrapStyles = {
     flex: 'flex flex-col',
+    width: 'w-full',
   };
   const rowStyles = {
     flex: 'flex justify-end self-start flex-nowrap items-center',
@@ -39,12 +40,11 @@ export function LapList() {
 
   const TopRow = () => (
     <div className={`${toClassString(rowStyles)}`}>
-      <div className="text-white text-xs pr-3">Delete All: </div>
       <button
         className={`${toClassString(buttonStyles)}`}
         onClick={onDeleteClick}
       >
-        <Trash styles={{ color: 'white', activeColor: 'white' }} />
+        <Refresh styles={{ color: 'white', activeColor: 'white' }} />
       </button>
     </div>
   );

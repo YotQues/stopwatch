@@ -31,7 +31,9 @@ export function SingleLap({ time, index }: SingleLapProps): JSX.Element {
   );
 
   return (
-    <div className={`${flex} ${text} w-full border-2 rounded my-1`}>
+    <div
+      className={`${flex} ${text} w-full border-2 rounded my-1 bg-gradient-to-bl from-yellow-600 to-blue-600`}
+    >
       <Cell>{index + 1})</Cell>
       <Cell>{hours}</Cell>
       <Divider />

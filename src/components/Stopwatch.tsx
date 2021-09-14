@@ -55,10 +55,15 @@ export function Stopwatch(props: StopwatchProps): JSX.Element {
       pauseRun();
     },
     onLapClick: () => {
-      dispatch(LapsActionCreator.addLap(state.elapsedTime));
+      if (state.intervalId)
+        dispatch(LapsActionCreator.addLap(state.elapsedTime));
+      else {
+        alert('You have to start the timer to add laps!');
+      }
     },
     onResetClick: () => {
       resetRun();
+      dispatch(LapsActionCreator.deleteLaps());
     },
     onStopClick: () => {
       stopRun();
@@ -103,7 +108,7 @@ export function Stopwatch(props: StopwatchProps): JSX.Element {
 
   return (
     <div
-      className={`${width} ${height} ${marginAndPadding} ${flex}  bg-gradient-to-b from-indigo-600 to-indigo-300 landscape:rounded-none md:rounded-md transition-shadow shadow-2xl`}
+      className={`${width} ${height} ${marginAndPadding} ${flex}  bg-gradient-to-b from-indigo-600 to-indigo-300 transition-shadow shadow-2xl`}
     >
       <Timer time={state.elapsedTime} />
       <ButtonStack state={state.intervalId} {...eventHandlers} />
