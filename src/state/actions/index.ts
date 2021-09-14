@@ -1,2 +1,2 @@
-export * from './actions';
-export * from './watchActions'
+export * from './actionTypes';
+export * from './laps';

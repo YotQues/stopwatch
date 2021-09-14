@@ -11,15 +11,13 @@ import {
   Stop,
 } from '../components/Icons';
 
-// import * as PauseStories from './Icons/Pause.stories';
-
 import '../index.css';
 
 export default {
   component: Button,
   title: 'Components/Button',
   argTypes: {
-    onClick: { action: 'clicked' },
+    onClick: { action: 'clicked', description: 'A props provided function' },
   },
   decorators: [
     (story) => (

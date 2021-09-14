@@ -1,4 +1,4 @@
-import React from 'react';
+import { IntervalId } from '../../state/reducers/watchReducer';
 
 import {
   LapButton,
@@ -8,18 +8,10 @@ import {
   StopButton,
 } from './index';
 
-// interface ButtonType {
-//   styles: ButtonStyles;
-//   label: string;
-//   icon: JSX.Element;
-//   onClick: () => void;
-// }
 type Handler = () => void;
 
-interface ButtonStackProps {
-  state: {
-    isRun: boolean;
-  };
+export interface ButtonStackProps {
+  state: IntervalId;
   onStartClick: Handler;
   onPauseClick: Handler;
   onLapClick: Handler;
@@ -36,7 +28,7 @@ export function ButtonStack({
   onStopClick,
 }: ButtonStackProps): JSX.Element {
   const renderRunButton = (): JSX.Element => {
-    return !state.isRun ? (
+    return !state ? (
       <StartButton onClick={onStartClick} />
     ) : (
       <PauseButton onClick={onPauseClick} />
@@ -44,7 +36,7 @@ export function ButtonStack({
   };
 
   return (
-    <div className="flex gap-x-2 md:gap-x-3.5 lg:gap-x-5">
+    <div className="flex justify-center gap-x-2 md:gap-x-3.5 lg:gap-x-5 self-center transform -translate-y-1">
       {renderRunButton()}
       <LapButton onClick={onLapClick} />
       <ResetButton onClick={onResetClick} />

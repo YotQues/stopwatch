@@ -25,13 +25,13 @@ export function Button(props: ButtonProps): JSX.Element {
   const { label, onClick, children, className, styles } = props;
 
   const dimensions =
-    'w-20 h-20 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48';
+    'landscape:w-16 landscape:h-16 xs:w-20 xs:h-20 lg:w-24 lg:h-24 xl:w-32 xl:h-32';
 
   const fontSize = 'text-xs md:text-base lg:text-lg xl:text-2xl';
 
   return (
     <button
-      className={`group ${dimensions} flex flex-col justify-center items-center shadow bg-${styles.bgColor} hover:bg-${styles.activeBgColor} ${className} hover:shadow-none focus:ring-2 focus:ring-${styles.activeBgColor} focus:ring-opacity-75`}
+      className={`group ${dimensions} flex flex-col justify-center items-center shadow bg-${styles.bgColor} hover:bg-${styles.activeBgColor} ${className} hover:shadow-lg focus:ring-2 focus:ring-${styles.activeBgColor} focus:ring-opacity-75`}
       onClick={onClick}
     >
       {children && children}

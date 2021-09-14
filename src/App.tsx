@@ -1,33 +1,11 @@
-import React, { useState } from 'react';
+import { Stopwatch } from './components/Stopwatch';
+import { LapList } from './components/Laps/LapList';
 
-import { ButtonStack } from './components/Buttons';
-import { Stopwatch } from './components/Watch';
-
-export const App: React.FunctionComponent = (): JSX.Element => {
-  const [isRun, setIsRun] = useState(false);
-
-  const eventHandlers = {
-    onStartClick: () => {
-      console.log('running');
-    },
-    onPauseClick: () => {
-      console.log('paused');
-    },
-    onLapClick: () => {
-      console.log('lap');
-    },
-    onResetClick: () => {
-      console.log('Refresh');
-    },
-    onStopClick: () => {
-      console.log('Stop');
-    },
-  };
-
+export function App(): JSX.Element {
   return (
-    <div className="p-8">
-      <ButtonStack state={{ isRun }} {...eventHandlers} />
+    <div className="w-full h-screen flex flex-col landscape:items-center">
       <Stopwatch />
+      <LapList />
     </div>
   );
-};
+}
