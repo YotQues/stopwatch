@@ -17,7 +17,7 @@ export default {
   component: Button,
   title: 'Components/Button',
   argTypes: {
-    onClick: { action: 'clicked' },
+    onClick: { action: 'clicked', description: 'A props provided function' },
   },
   decorators: [
     (story) => (

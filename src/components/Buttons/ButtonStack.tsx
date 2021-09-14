@@ -10,7 +10,7 @@ import {
 
 type Handler = () => void;
 
-interface ButtonStackProps {
+export interface ButtonStackProps {
   state: IntervalId;
   onStartClick: Handler;
   onPauseClick: Handler;

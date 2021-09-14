@@ -84,7 +84,7 @@ export function formatTime(elapsedTimeState: number): FormattedTime {
   }
   let minutes = formatNumber(tempMinutes);
 
-  let hours = formatNumber(elapsedTimeState - (elapsedTimeState % 3600000));
+  let hours = formatNumber(elapsedTimeState / 3600000);
 
   return {
     centSeconds,

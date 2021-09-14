@@ -14,5 +14,15 @@ const Template: Story<TimerProps> = (args) => <Timer {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  time: Date.now(),
+  time: 0,
+};
+
+export const GenericTime = Template.bind({});
+GenericTime.args = {
+  time: 16556445,
+};
+
+export const LongTime = Template.bind({});
+LongTime.args = {
+  time: 1655644534,
 };

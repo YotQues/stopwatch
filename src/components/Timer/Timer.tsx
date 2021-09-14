@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { isPropertySignature } from 'typescript';
 
 import { formatTime } from '../../utils/timerUtils';
 
@@ -6,7 +7,7 @@ export type TimerProps = {
   time: number;
 };
 
-export function Timer({ time = Date.now() }: TimerProps): JSX.Element {
+export function Timer({ time = 0 }: TimerProps): JSX.Element {
   const [hrs, setHrs] = useState<string>('00');
   const [min, setMin] = useState<string>('00');
   const [sec, setSec] = useState<string>('00');
@@ -24,32 +25,49 @@ export function Timer({ time = Date.now() }: TimerProps): JSX.Element {
     makeTimeForm(time);
   }, [time]);
 
-  const boxDimensions = 'w-80 h-80 lg:w-128 lg:h-128';
-  const cellWidth = 'w-20 lg:w-36 xl:w-48';
-  const cellHeight = 'h-20 lg:h-36 xl:h-48';
-
-  const fontSize = 'text-6xl md:text-8xl';
-
-  const boxClassName = `${boxDimensions} ${fontSize} flex justify-around items-center text-center text-gray-200 rounded-full`;
-
-  return (
-    <div className={boxClassName + ' border-2 border-gray-200 shadow-lg'}>
-      <div className={` ${cellWidth} ${cellHeight} `}>{hrs}</div>
-      <div className={`w-2 ${cellHeight}`}>:</div>
-      <div className={`${cellWidth} ${cellHeight} `}>{min}</div>
-      <div className={`w-2 ${cellHeight}`}>:</div>
-      <div className={`${cellWidth} ${cellHeight} `}>{sec}</div>
-      <div className={`w-2 ${cellHeight}`}>:</div>
-      <div className={`${cellWidth} ${cellHeight} `}>{centSec}</div>
+  const RoundBox = (props: React.ComponentProps<'div'>) => (
+    <div
+      className={`${boxDimensions} ${text} ${flex} rounded-full border-2 border-gray-200 shadow-lg`}
+    >
+      {props.children}
     </div>
   );
-}
 
-{
-  /* <div
-  className={`w-1 h-1/2  relative -inset-x-1/2 -inset-y-1/4 origin-bottom transform rotate-${degrees} transition-transform ease-linear`}
->
-  <div className="w-full h-1/2 bg-black"></div>
-  <div className="w-full h-1/2"></div>
-</div> */
+  const Cell = (props: React.ComponentProps<'div'>) => (
+    <div className={`${cellWidth} ${cellHeight} ${textTransform} `}>
+      {props.children}
+    </div>
+  );
+  const Divider = (props: React.ComponentProps<'div'>) => (
+    <div className={`w-2 ${cellHeight} ${textTransform}`}>
+      {props.children ? props.children : ':'}
+    </div>
+  );
+
+  const boxDimensions = 'w-80 h-80 landscape:h-72 landscape:w-72';
+  const cellWidth = 'w-20';
+  const cellHeight = 'h-20';
+
+  const text =
+    'text-5xl xs-landscape:text-5xl xs:text-6xl text-center text-gray-200 leading-loose';
+
+  const textTransform = 'transform portrait:-translate-y-1.5';
+
+  const flex = `flex justify-around items-center`;
+
+  return (
+    <RoundBox>
+      <Cell>{hrs}</Cell>
+      <Divider />
+      <Cell>{min}</Cell>
+      <Divider />
+      <Cell>{sec}</Cell>
+      {parseInt(hrs) < 99 && (
+        <>
+          <Divider>.</Divider>
+          <Cell>{centSec}</Cell>
+        </>
+      )}
+    </RoundBox>
+  );
 }

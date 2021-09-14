@@ -24,7 +24,8 @@ export interface ButtonProps extends React.ComponentProps<'button'> {
 export function Button(props: ButtonProps): JSX.Element {
   const { label, onClick, children, className, styles } = props;
 
-  const dimensions = 'w-20 h-20 md:w-32 md:h-32';
+  const dimensions =
+    'landscape:w-16 landscape:h-16 xs:w-20 xs:h-20 lg:w-24 lg:h-24 xl:w-32 xl:h-32';
 
   const fontSize = 'text-xs md:text-base lg:text-lg xl:text-2xl';
 

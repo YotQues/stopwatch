@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 import { WatchActions } from '../state/actions';
 import { State, IntervalId } from '../state/reducers/watchReducer';
@@ -9,11 +9,7 @@ import { Timer } from './Timer';
 import { ButtonStack } from './Buttons';
 import { useEffect } from 'react';
 
-export interface StopwatchProps {
-  onLapClick?: () => void;
-}
-
-export function Stopwatch(props: StopwatchProps): JSX.Element {
+export function PureStopwatch(): JSX.Element {
   const state = {
     elapsedTime: useSelector((state: State) => state.stopwatch.elapsedTime),
     isRun: useSelector((state: State) => state.stopwatch.isRun),
@@ -38,7 +34,7 @@ export function Stopwatch(props: StopwatchProps): JSX.Element {
   useEffect(() => {
     // 👇 if time is larger than 999hrs, 59min, 59sec,
     // 990ms stop the watch and give a message to the user.
-    if (state.intervalId && state.elapsedTime > 3599999099) {
+    if (state.intervalId && state.elapsedTime < 3599999099) {
       stopRun();
       alert(
         "Well, it's been a while.. we figure you are'nt here so we stopped the timer for you..."
@@ -52,10 +48,7 @@ export function Stopwatch(props: StopwatchProps): JSX.Element {
       pauseRun();
     },
     onLapClick: () => {
-      if (props.onLapClick) props.onLapClick();
-      else {
-        dispatch({ type: 'LAP_CLICK' });
-      }
+      console.log('lap');
     },
     onResetClick: () => {
       resetRun();
