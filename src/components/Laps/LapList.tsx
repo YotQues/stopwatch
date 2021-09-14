@@ -3,13 +3,19 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { LapActions } from '../../state/actions';
-import { SingleLapState } from '../../state/reducers/lapsReducer';
+import { LapsState, SingleLapState } from '../../state/reducers/lapsReducer';
 
 import { toClassString } from '../../utils/toClassString';
 
 import { SingleLap } from './SingleLap';
-import { Refresh, Trash } from '../Icons';
+import { Refresh } from '../Icons';
 import { State } from '../../state/reducers';
+
+export interface LapListProps {
+  state?: {
+    laps: LapsState;
+  };
+}
 
 export function LapList() {
   const dispatch = useDispatch();

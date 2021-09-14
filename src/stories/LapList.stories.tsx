@@ -6,20 +6,17 @@ import { reducer } from '../state/reducers';
 
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { Stopwatch, StopwatchProps } from '../components/Stopwatch';
+import { LapList, LapListProps } from '../components/Laps/LapList';
 import '../index.css';
 
 export default {
-  component: Stopwatch,
-  title: 'Components/Stopwatch',
+  component: LapList,
+  title: 'Components/Laps/LapList',
   decorators: [
     (story) => <Provider store={createStore(reducer)}>{story()}</Provider>,
   ],
-  argTypes: {
-    onLapClick: { action: 'Lap Click' },
-  },
 } as Meta;
 
-const Template: Story<StopwatchProps> = (args) => <Stopwatch {...args} />;
+const Template: Story<void> = (args) => <LapList />;
 
 export const Default = Template.bind({});
