@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { formatTime } from '../../utils/timerUtils';
 
-type TimerProps = {
+export type TimerProps = {
   time: number;
 };
 
@@ -28,7 +28,7 @@ export function Timer({ time = Date.now() }: TimerProps): JSX.Element {
   const cellWidth = 'w-20 lg:w-36 xl:w-48';
   const cellHeight = 'h-20 lg:h-36 xl:h-48';
 
-  const fontSize = 'text-6xl md:text-8xl lg:text-9xl xl:text-2xl';
+  const fontSize = 'text-6xl md:text-8xl';
 
   const boxClassName = `${boxDimensions} ${fontSize} flex justify-around items-center text-center text-gray-200 rounded-full`;
 

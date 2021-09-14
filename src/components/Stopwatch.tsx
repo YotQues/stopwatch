@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { WatchActions } from '../../state/actions';
-import { State, IntervalId } from '../../state/reducers/watchReducer';
+import { WatchActions } from '../state/actions';
+import { State, IntervalId } from '../state/reducers/watchReducer';
 
-import * as TimerUtils from '../../utils/timerUtils';
+import * as TimerUtils from '../utils/timerUtils';
 
 import { Timer } from './Timer';
-import { ButtonStack } from '../Buttons';
+import { ButtonStack } from './Buttons';
 
 export function Stopwatch(): JSX.Element {
   const state = {

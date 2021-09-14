@@ -43,7 +43,9 @@ export function onReset(
   intervalSetter: IntervalSetter,
   timeSetter: TimeSetter
 ) {
-  onStart(0, intervalState, intervalSetter, timeSetter);
+  if (intervalState) {
+    onStart(0, intervalState, intervalSetter, timeSetter);
+  } else timeSetter(0);
 }
 
 export function onPause(

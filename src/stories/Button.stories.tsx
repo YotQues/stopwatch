@@ -11,8 +11,6 @@ import {
   Stop,
 } from '../components/Icons';
 
-// import * as PauseStories from './Icons/Pause.stories';
-
 import '../index.css';
 
 export default {
