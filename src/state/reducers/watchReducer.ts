@@ -9,9 +9,11 @@ export interface StopwatchState {
   intervalId: number | undefined;
 }
 
-export interface State {
-  stopwatch: StopwatchState;
+export interface LapsState {
+
 }
+
+
 
 export type WatchDispatchType = (args: WatchAction<any>) => WatchAction<any>;
 

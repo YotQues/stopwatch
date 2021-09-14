@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { WatchActions } from '../state/actions';
-import { State, IntervalId } from '../state/reducers/watchReducer';
+import { LapsActionCreator } from '../state/actions/laps';
+
+import { IntervalId } from '../state/reducers/watchReducer';
+import { State } from '../state/reducers';
 
 import * as TimerUtils from '../utils/timerUtils';
 
@@ -52,10 +55,7 @@ export function Stopwatch(props: StopwatchProps): JSX.Element {
       pauseRun();
     },
     onLapClick: () => {
-      if (props.onLapClick) props.onLapClick();
-      else {
-        dispatch({ type: 'LAP_CLICK' });
-      }
+      dispatch(LapsActionCreator.addLap(state.elapsedTime));
     },
     onResetClick: () => {
       resetRun();

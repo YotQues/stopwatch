@@ -10,11 +10,6 @@ import { reducer } from './state/reducers';
 import './index.css';
 
 import { App } from './App';
-import {
-  StopwatchState,
-  WatchDispatchType,
-} from './state/reducers/watchReducer';
-import { WatchAction } from './state/actions';
 
 // 👇 A fix for fast refresh issue
 if (module.hot) module.hot.accept();
